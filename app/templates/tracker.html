@@ -1,0 +1,35 @@
+{%extends "base.html" %}
+
+
+{% block body %}
+<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+    <button onclick="location.href='/'" class="btn btn-secondary mb-1 mt-1">Refresh all</button>
+</div>
+
+<div class="list-group">
+    {% for item in items %}
+        <a href="{{item.url}}" class="list-group-item list-group-item-action">
+            <div class="row">
+                <div class="col-2 text-center">
+                    <img src="{{item.image_url}}" class="img-thumbnail" style="max-height: 130px;max-width:130px">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">{{item.name}}</h5>
+                        <small>Original price: {{item.original_price}}</small>
+                        </div>
+                        <p class="mb-1">Current price: {{item.newest_price}}</p>
+                        <small>
+                            Savings: {{(item.original_price - item.newest_price)|round(2)}}
+                        </small>
+                        <form action="{{ url_for('delete_item', item_id=item.id) }}" method=post>
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                            </div>
+                        </form>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+{% endblock %}

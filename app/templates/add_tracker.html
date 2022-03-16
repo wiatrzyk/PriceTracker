@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>Add new item</h1>
+    <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="mb-3">
+            <label for="name" class="form-label">Item name</label>
+            <input class="form-control" id="name" name="name" >
+          </div>
+          <div class="mb-3">
+            <label for="url" class="form-label">URL</label>
+            <input class="form-control" id="url" name="url">
+          </div>
+          <button type="submit" class="btn btn-secondary">Submit</button>
+    </form>
+{% endblock %}
